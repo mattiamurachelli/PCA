@@ -51,6 +51,9 @@ After opening the file and pressing Apply in the Properties section:
 2. Set Coloring to: label
 3. Enable the Data Axes Grid checkbox to show coordinate axes
 
+## Matlab implementation
+You can also find in the root folder the file `PCA_iris_dataset.m` that is the Matlab implementation that inspired this project, as I wanted to replicate the same code in C++. In order to run the script it is required to install the [Statistics and Machine Learning Toolbox](https://it.mathworks.com/products/statistics.html) Add-On, which contains the Fisher Iris Dataset.
+
 For any questions, suggestions, or to report a bug, feel free to contact me at mattia.murachelli@mail.polimi.it
 
 04/04/2025 — Mattia Murachelli
