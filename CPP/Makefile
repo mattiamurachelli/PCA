@@ -7,10 +7,10 @@ SRC_DIR  = src
 OBJ_DIR  = obj
 
 # List all source files
-SRCS     := main.cpp $(wildcard $(SRC_DIR)/*.cpp)
+SRCS     := $(wildcard $(SRC_DIR)/*.cpp)
 
 # Generate object file paths in obj/
-OBJS     := $(OBJ_DIR)/main.o $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(wildcard $(SRC_DIR)/*.cpp))
+OBJS     := $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRCS))
 
 # Dependency files
 DEPS     := $(OBJS:.o=.d)
@@ -23,11 +23,7 @@ all: $(EXEC)
 $(EXEC): $(OBJS)
 		$(CXX) $(CXXFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) -o $@
 
-# Compile main.cpp separately
-$(OBJ_DIR)/main.o: main.cpp | $(OBJ_DIR)
-		$(CXX) $(CXXFLAGS) $(CPPFLAGS) -c $< -o $@
-
-# Compile other .cpp files inside src/
+# Compile all .cpp files inside src/
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
 		$(CXX) $(CXXFLAGS) $(CPPFLAGS) -c $< -o $@
 
@@ -39,6 +35,6 @@ $(OBJ_DIR):
 -include $(DEPS)
 
 clean:
-		$(RM) -r $(OBJ_DIR)
+		$(RM) -r $(OBJ_DIR) main_pca *.vtk
 
 distclean: clean

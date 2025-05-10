@@ -1,0 +1,3 @@
+# Files to ignore
+CPP/iris.json
+CPP/headers/json.hpp
